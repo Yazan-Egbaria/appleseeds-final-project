@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useLogin } from "../useCases/useLogin";
 import { useNavigate } from "react-router";
 
-
 const LoginDialog = ({ onClose }) => {
   const login = useLogin();
   const [email, setEmail] = useState("");
@@ -12,7 +11,6 @@ const LoginDialog = ({ onClose }) => {
 
   const navigate = useNavigate();
 
-
   const handleLogin = async () => {
     setIsLoading(true);
     setError(null);
@@ -21,7 +19,7 @@ const LoginDialog = ({ onClose }) => {
 
     setIsLoading(false);
     if (result.success) {
-      navigate('/'); // Close the dialog on successful login
+      navigate("/"); // Close the dialog on successful login
     } else {
       setError(result.error);
     }
