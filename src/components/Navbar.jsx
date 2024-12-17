@@ -2,15 +2,15 @@ import { NavLink } from "react-router-dom";
 import NavItem from "./NavItem";
 import { useState } from "react";
 import { userAccountState } from "../authenticationFeature/states/userAccountState";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import AccountMenuItem from "../authenticationFeature/components/AccountMenuItem";
 
 const Navbar = () => {
-  const [LoginState, setLoginState] = useRecoilState(userAccountState);
-
-  // const LoginState = useRecoilValue(userAccountState);
-
+  const handleLogout = () => {
+    console.log("Logged out!");
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const LoginState = useRecoilValue(userAccountState);
 
   const links = [
     { text: "Home", linkTo: "/" },
@@ -55,7 +55,7 @@ const Navbar = () => {
             isLogin={LoginState.isAuthenticated}
             name={LoginState.name}
             coins={LoginState.coins}
-            onLogout={{}}
+            onLogout={handleLogout}
           />
           {/* Get Started Button (Desktop) */}
           <div className="hidden md:flex">
