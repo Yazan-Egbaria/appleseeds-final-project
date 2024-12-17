@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist .netlify",
+    "clean:all": "rm -rf dist .netlify .astro node_modules pnpm-lock.yaml package-lock.json && find . -name \".DS_Store\" -delete",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,astro,svelte,json,md,css}\""
   },
   "dependencies": {
     "dayjs": "^1.11.13",
