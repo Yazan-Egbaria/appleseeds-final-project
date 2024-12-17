@@ -27,7 +27,6 @@ const AccountMenuItem = ({ isLogin, name, coins, onLogout }) => {
               Login
             </button>
           </NavLink>
-         
         </>
       )}
     </div>

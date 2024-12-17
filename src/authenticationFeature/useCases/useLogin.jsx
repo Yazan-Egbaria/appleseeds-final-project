@@ -13,7 +13,7 @@ export const useLogin = () => {
         password,
       );
       const userId = userCredential.user.uid;
-      console.log("Log in with :",userId)
+      console.log("Log in with :", userId);
 
       // Fetch and set the app account in Recoil
       await fetchAndSetAccount(userId);

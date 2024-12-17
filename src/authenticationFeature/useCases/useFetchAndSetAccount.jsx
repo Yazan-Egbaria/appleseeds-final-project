@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase"
+import { db } from "../../firebase";
 import { userAccountState } from "../states/userAccountState";
 import { useSetRecoilState } from "recoil";
 
@@ -9,7 +9,6 @@ import { useSetRecoilState } from "recoil";
  */
 export const useFetchAndSetAccount = () => {
   const setUserAccount = useSetRecoilState(userAccountState);
-  
 
   return async (userId) => {
     setUserAccount((prev) => ({ ...prev, isLoading: true })); // Set loading state

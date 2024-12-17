@@ -1,4 +1,5 @@
 import FilterCard from "../components/FilterCard";
+import SectionContainer from "../components/layout/SectionContainer";
 
 const MarketPlace = () => {
   const cards = [
@@ -25,7 +26,7 @@ const MarketPlace = () => {
   ];
 
   return (
-    <div className="pagePadding container mx-auto flex min-h-calc-100dvh-minus-80 flex-col pt-20 lg:min-h-calc-100vh-minus-80">
+    <SectionContainer externalClass="" innerClass="">
       <h2 className="mb-8 text-lg font-bold md:text-xl">Filter By Category</h2>
       <div className="flex flex-wrap gap-4">
         {cards.map((card, index) => {
@@ -33,7 +34,7 @@ const MarketPlace = () => {
           return <FilterCard key={index} img={img} text={text} />;
         })}
       </div>
-    </div>
+    </SectionContainer>
   );
 };
 
