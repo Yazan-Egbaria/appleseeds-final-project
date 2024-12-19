@@ -1,7 +1,11 @@
 import "../userPage/ProfilePage.css";
 import { useState } from "react";
+import UserPreview from "./components/UserPreview";
+import UserInfo from './components/UserInfo';
+
 
 export default function ProfilePage() {
+
   const [user, setUser] = useState({
     name: "Ohad",
     age: 35,
@@ -56,87 +60,35 @@ export default function ProfilePage() {
     });
   }
 
-  function handleImgChange(e) {
-    const file = e.target.files[0];
-    if (file) {
-      const imgURL = URL.createObjectURL(file);
-      setUser((prevUser) => {
-        return Object.assign({}, prevUser, { profileImg: imgURL });
-      });
-    }
-  }
+
+  const userData = {
+    name: "David Levy",
+    title: "Software Engineer",
+    imageUrl: "https://via.placeholder.com/150",
+    coins: 50,
+    bio: "Hi, I’m a passionate developer from Haifa, studying at the Technion. I enjoy working on innovative projects and sharing my knowledge to help others succeed.",
+  };
+
+  const userInfoData = {
+    city: "Haifa",
+    culture: "Jewish",
+    instagram: "#",
+    facebook: "#",
+    language: "Hebrew, English",
+    education: "Software Engineer",
+    university: "Technion",
+  };
 
   return (
     <div className="container">
-      <h1>User Profile</h1>
-
-      <div className="square top">
-        <div className="profile-img-container">
-          <img src={user.profileImg} alt="profileImg" />
-        </div>
-
-        <div>
-          {user.isEditing && (
-            <input
-              className="input-file"
-              type="file"
-              accept="image/*"
-              onChange={handleImgChange}
-            />
-          )}
-
-          <p>Name:</p>
-          {user.isEditing ? (
-            <input
-              type="text"
-              name="name"
-              value={user.name}
-              onChange={handleChange}
-            />
-          ) : (
-            <span>{user.name}</span>
-          )}
-
-          <p>Rating: {user.rating}</p>
-
-          <p>About Me:</p>
-          {user.isEditing ? (
-            <input
-              type="text"
-              name="aboutMe"
-              value={user.aboutMe}
-              onChange={handleChange}
-            />
-          ) : (
-            <span>{user.aboutMe}</span>
-          )}
-
-          <p>Basic Statistics:</p>
-          {user.isEditing ? (
-            <input
-              type="text"
-              name="basicStatistics"
-              value={user.basicStatistics}
-              onChange={handleChange}
-            />
-          ) : (
-            <span>{user.basicStatistics}</span>
-          )}
-        </div>
+      <div className="sectionHeader">
+        <h1>Profile</h1>
+        <button>Edit Profile</button>
       </div>
-      <div className="square">
-        <p>
-          Phone Number:{" "}
-          <a
-            href={`https://wa.me/${user.phoneNumber.replace(/-/g, "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {user.phoneNumber}
-          </a>
-        </p>
-        <p> email: {user.email}</p>
-      </div>
+      <article className="HeroSection">
+        <UserPreview user={userData} />
+        <UserInfo userInfo={userInfoData} />
+      </article>
 
       <div className="square middle">
         <h3>academicProfession: </h3>
