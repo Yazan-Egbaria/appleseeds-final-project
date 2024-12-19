@@ -229,6 +229,7 @@ const addTestUsers = async () => {
       await setDoc(doc(db, "users", uid), {
         ...user,
         coins: 0,
+        rating: 4,
       });
 
       console.log(`User ${userId} added successfully with authentication.`);
