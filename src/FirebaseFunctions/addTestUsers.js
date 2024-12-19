@@ -2,6 +2,7 @@ import { db } from "../firebase.js";
 import {
   collection,
   setDoc,
+  getDoc,
   getDocs,
   query,
   where,
@@ -23,6 +24,8 @@ const sampleUsers = [
     experience: "5 years in software development",
     profession: ["Full-Stack Development"],
     bio: "Passionate about building scalable web applications and exploring new technologies.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Jane Smith",
@@ -33,6 +36,8 @@ const sampleUsers = [
     experience: "3 years in marketing",
     profession: ["Front-End Development", "Digital Marketing"],
     bio: "Creative digital marketer with a knack for UI/UX design and branding.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Ahmed Ali",
@@ -43,6 +48,8 @@ const sampleUsers = [
     experience: "7 years in engineering",
     profession: ["Back-End Development"],
     bio: "Skilled in server-side technologies and backend architecture.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Liora Cohen",
@@ -53,6 +60,8 @@ const sampleUsers = [
     experience: "2 years in research",
     profession: ["Data Analysis", "UI/UX Design"],
     bio: "Data analyst with a passion for creating meaningful data visualizations.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Mohammed Hassan",
@@ -63,6 +72,8 @@ const sampleUsers = [
     experience: "10 years in IT",
     profession: ["Mobile Development", "Graphic Design"],
     bio: "Experienced IT manager with expertise in mobile app development and graphic design.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Sarah Levi",
@@ -73,6 +84,8 @@ const sampleUsers = [
     experience: "1 year in teaching",
     profession: ["Basic Programming", "Video Editing"],
     bio: "Teacher with a love for technology and a knack for video content creation.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Daniel Green",
@@ -83,6 +96,8 @@ const sampleUsers = [
     experience: "4 years in software development",
     profession: ["Front-End Development", "UI/UX Design"],
     bio: "Frontend developer specializing in creating responsive and engaging user interfaces.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Fatima Zayed",
@@ -93,6 +108,8 @@ const sampleUsers = [
     experience: "3 years in healthcare",
     profession: ["Mobile Development", "Digital Marketing"],
     bio: "Health care professional turned mobile developer with a passion for innovation.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Yosef Gold",
@@ -103,6 +120,8 @@ const sampleUsers = [
     experience: "15 years in finance",
     profession: ["Data Analysis", "Full-Stack Development"],
     bio: "Finance expert exploring the world of data science and full-stack development.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Maya Shafir",
@@ -113,6 +132,8 @@ const sampleUsers = [
     experience: "6 years in design",
     profession: ["Basic Programming", "Graphic Design"],
     bio: "Designer with a passion for creating aesthetically pleasing and functional designs.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Michael Brown",
@@ -123,6 +144,8 @@ const sampleUsers = [
     experience: "4 years in full-stack development",
     profession: ["Full-Stack Development", "UI/UX Design"],
     bio: "Full-stack developer with a love for both front-end and back-end technologies.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Emily Davis",
@@ -133,6 +156,8 @@ const sampleUsers = [
     experience: "5 years in front-end development",
     profession: ["Front-End Development", "Video Editing"],
     bio: "Frontend developer with a strong background in multimedia content.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Robert Johnson",
@@ -143,6 +168,8 @@ const sampleUsers = [
     experience: "8 years in back-end development",
     profession: ["Back-End Development", "Data Analysis"],
     bio: "Backend developer focused on building efficient and scalable backend systems.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "Olivia Martinez",
@@ -153,6 +180,8 @@ const sampleUsers = [
     experience: "6 years in mobile development",
     profession: ["Mobile Development", "Graphic Design"],
     bio: "Mobile app developer and graphic designer with a creative mindset.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
   {
     name: "David Wilson",
@@ -163,6 +192,8 @@ const sampleUsers = [
     experience: "7 years in data analysis",
     profession: ["Data Analysis", "UI/UX Design"],
     bio: "Data analyst with a keen eye for detail and a passion for designing user-friendly interfaces.",
+    imgUrl:
+      "https://cdn.pixabay.com/photo/2014/05/21/20/17/icon-350226_640.png",
   },
 ];
 
@@ -210,4 +241,4 @@ const addTestUsers = async () => {
   }
 };
 
-// addTestUsers();
+addTestUsers();
