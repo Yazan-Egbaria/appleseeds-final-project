@@ -1,10 +1,16 @@
 import { useState } from "react";
 
-const FilterCard = ({ img, text, filter = function () {} }) => {
+const FilterCard = ({
+  img,
+  text,
+  filter = function () {},
+  onHomeClick = function () {},
+}) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const toggleSelection = () => {
     setIsSelected(!isSelected);
+    onHomeClick(text);
     filter(text); // Call the filter function to update the filter
   };
 

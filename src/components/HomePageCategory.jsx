@@ -1,11 +1,15 @@
 import { cards } from "../data/categories";
 import { useState, useEffect } from "react";
 import FilterCard from "./FilterCard";
-
+import { useNavigate } from "react-router-dom";
 const HomePageCategory = ({ padding, filterFunc = function () {} }) => {
+  const navigate = useNavigate();
   const [isMoreShown, setIsMoreShown] = useState(false);
   const [visibleCards, setVisibleCards] = useState(null);
-
+  function onHomeClick(text) {
+    console.log(text);
+    navigate(`/marketplace/${text}`);
+  }
   const showMore = () => {
     setIsMoreShown(!isMoreShown);
   };
@@ -52,6 +56,7 @@ const HomePageCategory = ({ padding, filterFunc = function () {} }) => {
                   img={img}
                   text={text}
                   filter={filterFunc}
+                  onHomeClick={onHomeClick}
                 />
               );
             })}

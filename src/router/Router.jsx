@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: "/marketplace",
+        path: "/marketplace/:id?",
         element: <MarketPlace />,
       },
       {
