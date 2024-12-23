@@ -68,9 +68,38 @@ function ProfilePage() {
     return <div>Loading...</div>;
   }
 
+
+export default function ProfilePage() {
+  //the shred db user object
+  const [user, setUser] = useState({
+    name: "Ohad",
+    coins: 100,
+    rating: "2",
+    basicStatistics: "need to be improved...",
+    feedback: "daniel: amazing, shara: good",
+    profileImg:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQi2Mm5P8j09P4hPKa1B-t9eIOHzHmR7IBkw&s",
+    language: ["Hebrew"],
+    profession: "engineering",
+    culture: "Jewish",
+    academicInstitution: "University of Haifa",
+    typeOfService: ["Digital Marketing"],
+    MySkills: ["JavaScript"],
+    aboutMe: "Passionate about design and innovation.",
+    experience: "year",
+    id:"1"
+  });
+  //const {id}=useParams();/*retrieve the id using useParams*/
+  const profile = user//.find(User=>User.id===id);/*choose the correct profile using the id*/
+  //if (!profile) {
+   // return <div>Profile not found</div>; // Handle case where profile is not found
+ // }
+  const [isEditing, setIsEditing] = useState(false);
+
   if (!profile) {
     return <div>Profile not found</div>;
   }
+
 
   const TypeOfService = [
     "Digital Marketing",
