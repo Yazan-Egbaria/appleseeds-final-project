@@ -1,21 +1,22 @@
 import { useState } from "react";
 
 function AttributeContainer({ isEditing, onEdit, user, listKey, options }) {
+  // Ensure user[listKey] is always an array
   const availableOptions = options.filter(
-    (option) => !user[listKey].includes(option),
+    (option) => !(user[listKey] || []).includes(option), // Fallback to empty array if undefined
   );
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleAddItem = (newItem) => {
-    onEdit(listKey, [...user[listKey], newItem]);
+    onEdit(listKey, [...(user[listKey] || []), newItem]); // Ensure user[listKey] is an array
     setDropdownVisible(false); // Close the dropdown after adding
   };
 
   const handleRemoveItem = (itemToRemove) => {
     onEdit(
       listKey,
-      user[listKey].filter((item) => item !== itemToRemove),
+      (user[listKey] || []).filter((item) => item !== itemToRemove), // Ensure user[listKey] is an array
     );
   };
 
@@ -23,7 +24,7 @@ function AttributeContainer({ isEditing, onEdit, user, listKey, options }) {
     <div className="attribute-container">
       <div className="attribute-container-list">
         {/* Selected Items */}
-        {user[listKey].map((item, index) => (
+        {(user[listKey] || []).map((item, index) => (
           <div key={index} className="attribute-container-item">
             <span>{item}</span>
             {isEditing && (

@@ -65,6 +65,7 @@ const SignUp = () => {
         experience: experience,
         profession: profession,
         coins: 0,
+        imgUrl: "public/images/default.jpeg",
       });
       // Redirect to login page
       navigate("/");

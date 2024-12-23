@@ -4,10 +4,12 @@ import HomePageCategory from "../components/HomePageCategory";
 import Card from "./../components/card/Card";
 import { Link } from "react-router-dom";
 import categorizeUsers from "./../FirebaseFunctions/FetchFilteredData";
+import Pagination from "../components/Pagination";
 
 const MarketPlace = () => {
   const { category } = useParams();
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(9);
   const [filterd, setFilterd] = useState(new Set());
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState({
@@ -35,6 +37,7 @@ const MarketPlace = () => {
       return newFilterd;
     });
   }
+  console.log(allUsers);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -56,6 +59,11 @@ const MarketPlace = () => {
     fetchUsers();
   }, [category]);
 
+  const lastPostInx = currentPage * postPerPage;
+  const firstPostInx = lastPostInx - postPerPage;
+
+  const currentPosts = allUsers.slice(firstPostInx, lastPostInx);
+
   return (
     <div className="pagePadding container mx-auto flex flex-col">
       <HomePageCategory
@@ -69,7 +77,7 @@ const MarketPlace = () => {
         </div>
       ) : filterd.size === 0 ? (
         <div className="flex flex-wrap gap-4">
-          {allUsers.map((user, userIndex) => (
+          {currentPosts.map((user, userIndex) => (
             <Link to={`/profile/${user.id}`}>
               <Card
                 key={userIndex}
@@ -83,6 +91,11 @@ const MarketPlace = () => {
               />
             </Link>
           ))}
+          <Pagination
+            totalPosts={allUsers.length}
+            postsPerPage={postPerPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       ) : (
         [...filterd].map((title) => {

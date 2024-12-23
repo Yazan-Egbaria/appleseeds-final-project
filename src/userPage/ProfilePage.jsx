@@ -1,68 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import UserPreview from "./components/UserPreview";
 import UserInfo from "./components/UserInfo";
 import AttributeContainer from "./components/AttributeContainer";
-import { useParams } from "react-router-dom";
-export default function ProfilePage() {
-  //the shred db user object
-  const [user, setUser] = useState([
-    {
-      name: "Ohad",
-      coins: 100,
-      rating: "4.7/5",
-      basicStatistics: "need to be improved...",
-      feedback: "daniel: amazing, shara: good",
-      profileImg:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQi2Mm5P8j09P4hPKa1B-t9eIOHzHmR7IBkw&s",
-      language: ["Hebrew"],
-      profession: "engineering",
-      culture: "Jewish",
-      academicInstitution: "University of Haifa",
-      typeOfService: ["Private lessons"],
-      MySkills: ["Programming"],
-      aboutMe: "Passionate about design and innovation.",
-      experience: "year",
-      id: "1",
-    },
-  ]);
-  const { id } = useParams(); /*retrieve the id using useParams*/
-  const profile = user.find(
-    (User) => User.id === id,
-  ); /*choose the correct profile using the id*/
-  if (!profile) {
-    return <div>Profile not found</div>; // Handle case where profile is not found
-  }
+import categorizeUsers from "../FirebaseFunctions/FetchFilteredData"; // Adjust the path
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+
+function ProfilePage() {
+  const [allUsers, setAllUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState(null);
 
-  // תהילה
-  const [isEditingServices, setIsEditingServices] = useState(false);
-  const [isEditingSkills, setIsEditingSkills] = useState(false);
+  const { id } = useParams();
+  console.log(id);
 
-  //const data menu
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedInUserId(user.uid); // Set logged-in user ID
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const categorizedData = await categorizeUsers();
+        const users = Object.values(categorizedData).flat();
+        console.log("All Users:", users); // Debugging
+        setAllUsers(users);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching and categorizing users:", error);
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  const profile = allUsers.find((user) => String(user.id) === String(id));
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!profile) {
+    return <div>Profile not found</div>;
+  }
+
   const TypeOfService = [
-    "Exam preparation",
-    "Private lessons",
-    "Professional intention",
+    "Digital Marketing",
+    "Graphic Design",
+    "Video Editing",
   ];
-
-  const TypeOfSkills = ["Chess", "Programming", "Cooking"];
-
-  const Experience = ["year", "2-5 years", "5-10 years", "10 and above"];
-
-  const profession = ["social science", "exact sciences", "engineering"];
-
-  const AcademicInstitution = [
-    "University of Haifa",
-    "Tel Aviv University",
-    "The Hebrew University",
-    "Technnyon",
-  ];
+  const TypeOfSkills = ["Python", "JavaScript", "C", "React", "CSS"];
 
   function toggleEdit() {
-    setIsEditing((isEditingPrev) => {
-      return !isEditingPrev;
-    });
+    setIsEditing((prev) => !prev);
   }
+
   const handleDropdownChange = (field, value) => {
     setUser((prevUser) => ({
       ...prevUser,
@@ -70,47 +70,8 @@ export default function ProfilePage() {
     }));
   };
 
-  // תהילה
-
-  function toggleEditServices() {
-    setIsEditingServices(!isEditingServices);
-  }
-
-  function toggleService(service) {
-    setUser((prevUser) => {
-      let updatedServices;
-
-      if (prevUser.typeOfService.includes(service)) {
-        updatedServices = prevUser.typeOfService.filter(
-          (item) => item !== service,
-        );
-      } else {
-        updatedServices = prevUser.typeOfService.concat(service);
-      }
-      return {
-        typeOfService: updatedServices,
-      };
-    });
-  }
-
-  function toggleEditSkills() {
-    setIsEditingSkills(!isEditingSkills);
-  }
-
-  function toggleSkills(skill) {
-    setUser((prevUser) => {
-      let updatedSkills;
-
-      if (prevUser.MySkills.includes(skill)) {
-        updatedSkills = prevUser.MySkills.filter((item) => item !== skill);
-      } else {
-        updatedSkills = prevUser.MySkills.concat(skill);
-      }
-      return {
-        MySkills: updatedSkills,
-      };
-    });
-  }
+  // Only show "Edit Profile" button if the logged-in user is viewing their own profile
+  const showEditButton = String(loggedInUserId) === String(id);
 
   return (
     <div className="container mx-auto max-w-screen-lg gap-5 p-5">
@@ -205,3 +166,5 @@ export default function ProfilePage() {
     </div>
   );
 }
+
+export default ProfilePage;

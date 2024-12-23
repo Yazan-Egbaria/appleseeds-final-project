@@ -1,39 +1,49 @@
+import { useState } from "react";
+
 function UserInfo({ isEditing, onEdit, user }) {
-  
   const cultureOptions = ["Arab", "Jewish"];
   const languageOptions = ["Arabic", "Hebrew", "English"];
   const cityOptions = ["Haifa", "SomeCity"];
   const academicInstitutionOptions = [
-    "University of Haifa",
-    "Tel Aviv University",
-    "The Hebrew University",
     "Technion",
+    "Tel Aviv University",
+    "Hebrew University of Jerusalem",
+    "Bar-Ilan University",
+    "Ben-Gurion University of the Negev",
+    "University of Haifa",
+    "Weizmann Institute of Science",
+    "Open University of Israel",
+    "Ariel University",
+    "Reichman University",
   ];
+
+  // State for feedback message
+  const [feedback, setFeedback] = useState("");
+
+  function onlanguagePick(value) {
+    const currentState = [...(user.language || [])]; // Ensure user.language is an array
+    let feedbackMessage = "";
+
+    if (!currentState.includes(value)) {
+      currentState.push(value);
+      feedbackMessage = `✔️, value: ${currentState.join(", ")}`;
+    } else {
+      const indexToRemove = currentState.indexOf(value);
+      if (indexToRemove !== -1) {
+        currentState.splice(indexToRemove, 1);
+        feedbackMessage = `❌, value: ${currentState.join(", ")}`;
+      }
+    }
+
+    onEdit("language", currentState);
+    setFeedback(feedbackMessage);
+    setTimeout(() => setFeedback(""), 3000);
+  }
 
   return (
     <div className="user-info">
       <h3>User Information</h3>
       <div className="info-grid">
-        {/* City */}
-        <div className="FieldH">
-          <span className="FieldH">City:</span>
-          {isEditing ? (
-            <select
-              value={user.city || ""}
-              onChange={(e) => onEdit("city", e.target.value)}
-              className="dropdown"
-            >
-              {cityOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <span>{user.city || "Not specified"}</span>
-          )}
-        </div>
-
         {/* Culture */}
         <div className="FieldH">
           <span className="FieldH">Culture:</span>
@@ -74,10 +84,17 @@ function UserInfo({ isEditing, onEdit, user }) {
           <span className="FieldH">Language:</span>
           {isEditing ? (
             <select
-              value={user.language[0] || ""}
-              onChange={(e) => onEdit("language", [e.target.value])}
+              value=""
+              onChange={(e) => {
+                const selectedLanguage = e.target.value;
+                console.log("seee", selectedLanguage);
+                onlanguagePick(selectedLanguage);
+              }}
               className="dropdown"
             >
+              <option value="" disabled>
+                Select a language
+              </option>
               {languageOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -85,14 +102,11 @@ function UserInfo({ isEditing, onEdit, user }) {
               ))}
             </select>
           ) : (
-            <span>{user.language.join(", ") || "Not specified"}</span>
+            <span>{(user.language || []).join(", ") || "Not specified"}</span>
           )}
-        </div>
 
-        {/* Education */}
-        <div>
-          <span className="FieldH">Education:</span>
-          <span>{user.education || "Not specified"}</span>
+          {/* Feedback Message */}
+          {feedback && <div className="feedback">{feedback}</div>}
         </div>
 
         {/* University */}

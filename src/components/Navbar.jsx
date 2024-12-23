@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import NavItem from "./NavItem";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase";
@@ -13,10 +13,13 @@ const Navbar = () => {
   const [coins, setCoins] = useState(0);
   const navigate = useNavigate();
 
+  const [userId, setUserId] = useState(null);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setIsLoggedIn(true);
+        setUserId(user.uid);
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
@@ -24,6 +27,7 @@ const Navbar = () => {
         }
       } else {
         setIsLoggedIn(false);
+        setUserId(null);
       }
     });
 
@@ -45,7 +49,7 @@ const Navbar = () => {
   };
 
   const handleProfileClick = () => {
-    navigate("/profile"); // This will take you to the Profile component
+    navigate(`/profile/${userId}`);
   };
 
   const hideMenu = () => {
@@ -56,6 +60,11 @@ const Navbar = () => {
     { text: "Home", linkTo: "/" },
     { text: "Marketplace", linkTo: "/marketplace" },
   ];
+  // const profile = users.find((user) => user.id === id);
+
+  // if (!profile) {
+  //   return <div>Profile not found</div>;
+  // }
 
   return (
     <nav className="pagePadding flex h-20 w-full items-center justify-between border-b py-2 text-white">

@@ -20,7 +20,7 @@ const categorizeUsers = async () => {
     const querySnapshot = await getDocs(usersCollectionRef);
 
     querySnapshot.forEach((doc) => {
-      const user = doc.data();
+      const user = { id: doc.id, ...doc.data() };
 
       // Determine the category based on the profession
       user.profession.forEach((prof) => {

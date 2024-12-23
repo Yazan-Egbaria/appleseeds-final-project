@@ -1,5 +1,6 @@
+import Rating from "./util/Rating";
+
 function UserPreview({ isEditing, onEdit, user }) {
-  
   const professionOptions = ["social science", "exact sciences", "engineering"];
 
   const handleImgChange = (e) => {
@@ -19,7 +20,7 @@ function UserPreview({ isEditing, onEdit, user }) {
           {/* Image as clickable to open file input */}
           <img
             onClick={() => document.getElementById("profileImgUpload").click()} // Trigger the file input on image click
-            src={user.profileImg}
+            src={user.imgURL}
             alt={user.name}
           />
 
@@ -68,7 +69,7 @@ function UserPreview({ isEditing, onEdit, user }) {
           <p className="bio">{user.aboutMe}</p>
         )}
         <div className="toActionRow">
-          <div className="rating">⭐ ⭐ ⭐ ⭐ ⭐</div>
+          <Rating rating={user.rating} />
           <button className="message-btn">Message</button>
         </div>
       </div>
