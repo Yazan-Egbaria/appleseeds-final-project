@@ -4,11 +4,9 @@ body {
   background-color: #f4f7fc;
 }
 
-
 .bottom {
   background-color: #e8f5e9;
 }
-
 
 .feedback-item {
   background-color: #f1f1f1;
@@ -44,74 +42,6 @@ body {
   line-height: 1.5;
 
 }
-
-/* 
-.square1 {
-  color: white;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: #555;
-  background-color: #0060AD  ;
-  height: 100px; 
-
- }
-
-.square.middle {
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  height: 100px;  
-
-}
-
-.square.middle ul {
-  display: flex; 
-  list-style-type: disc; 
-  padding-left: 20px; 
-}
-
-.square.middle li {
-  margin-right: 20px;
-}
-
-
-
-.square1 ul {
-  display: flex; 
-  padding-left: 20px;
-  max-width: 100%;  
-}
-
-.square1 li {
-  border:  solid white; 
-  margin-right: 20px;
-  margin: 0 5px;  
-  border-radius: 5px;
-  padding: 2px 5px;  
-}
-
-
-h1 {
-  text-align: center;
-  color: rgb(27, 27, 228);
-  margin-top: 20px;
-  font-size: 35px;
-  justify-content: left;
-  align-items: left;
-  font-weight: bold;
-  text-align: left;
-  margin-left: 50px;
-  margin-right: 50px; 
-  color: #0060AD
-}
-*/
 
 .container {
   gap: 20px; 
@@ -159,10 +89,6 @@ button:hover {
   transform: scale(1.05); 
 }
 
-
-
-/*Tomi...  */
-
 /* Section Header */
 .pageHeader {
   display: flex;
@@ -192,7 +118,6 @@ button:hover {
 .sectionHeader button:hover {
   background-color: #0056b3;
 }
-
 
 /* Hero Section Main Container */
 .HeroSection {
@@ -548,5 +473,12 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
+.feedback {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 5px;
+  width: max-content;
+}
 

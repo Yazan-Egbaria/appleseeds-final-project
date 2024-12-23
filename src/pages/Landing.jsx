@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomePageCategory from "../components/HomePageCategory";
 
 const Landing = () => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+    navigate(`/marketplace/${encodeURIComponent(category)}`);
+  };
   return (
     <main className="pagePadding container mx-auto pt-20">
       <article className="group relative flex w-full flex-col items-center justify-center gap-4 overflow-hidden rounded-lg border px-8 py-16">
@@ -89,7 +94,7 @@ const Landing = () => {
       </article>
 
       {/* Categories */}
-      <HomePageCategory padding="pt-4" />
+      <HomePageCategory padding="pt-4" filterFunc={handleCategoryClick} />
     </main>
   );
 };

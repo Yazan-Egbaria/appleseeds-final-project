@@ -1,3 +1,5 @@
+import Rating from "./util/Rating";
+
 function UserPreview({ isEditing, onEdit, user }) {
   
   const professionOptions = ["social science", "exact sciences", "engineering"];
@@ -68,7 +70,7 @@ function UserPreview({ isEditing, onEdit, user }) {
           <p className="bio">{user.aboutMe}</p>
         )}
         <div className="toActionRow">
-          <div className="rating">⭐ ⭐ ⭐ ⭐ ⭐</div>
+          <Rating rating={user.rating} />
           <button className="message-btn">Message</button>
         </div>
       </div>

@@ -9,7 +9,7 @@ export default function ProfilePage() {
   const [user, setUser] = useState([{
     name: "Ohad",
     coins: 100,
-    rating: "4.7/5",
+    rating: "3.7",
     basicStatistics: "need to be improved...",
     feedback: "daniel: amazing, shara: good",
     profileImg:
@@ -31,10 +31,6 @@ export default function ProfilePage() {
   }
   const [isEditing, setIsEditing] = useState(false);
 
-  // תהילה
-  const [isEditingServices, setIsEditingServices] = useState(false);
-  const [isEditingSkills, setIsEditingSkills] = useState(false);
-
   //const data menu
   const TypeOfService = [
     "Exam preparation",
@@ -43,18 +39,7 @@ export default function ProfilePage() {
   ];
 
   const TypeOfSkills = ["Chess", "Programming", "Cooking"];
-
-  const Experience = ["year", "2-5 years", "5-10 years", "10 and above"];
-
-  const profession = ["social science", "exact sciences", "engineering"];
-
-    const AcademicInstitution = [
-      "University of Haifa",
-      "Tel Aviv University",
-      "The Hebrew University",
-      "Technnyon",
-    ];
-
+ 
   function toggleEdit() {
     setIsEditing((isEditingPrev) => {
       return !isEditingPrev;
@@ -66,48 +51,6 @@ export default function ProfilePage() {
       [field]: value,
     }));
   };
-
-  // תהילה
-
-  function toggleEditServices() {
-    setIsEditingServices(!isEditingServices);
-  }
-
-  function toggleService(service) {
-    setUser((prevUser) => {
-      let updatedServices;
-
-      if (prevUser.typeOfService.includes(service)) {
-        updatedServices = prevUser.typeOfService.filter(
-          (item) => item !== service,
-        );
-      } else {
-        updatedServices = prevUser.typeOfService.concat(service);
-      }
-      return {
-        typeOfService: updatedServices,
-      };
-    });
-  }
-
-  function toggleEditSkills() {
-    setIsEditingSkills(!isEditingSkills);
-  }
-
-  function toggleSkills(skill) {
-    setUser((prevUser) => {
-      let updatedSkills;
-
-      if (prevUser.MySkills.includes(skill)) {
-        updatedSkills = prevUser.MySkills.filter((item) => item !== skill);
-      } else {
-        updatedSkills = prevUser.MySkills.concat(skill);
-      }
-      return {
-        MySkills: updatedSkills,
-      };
-    });
-  }
 
   return (
     <div className="container">

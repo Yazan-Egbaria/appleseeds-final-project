@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-const FilterCard = ({ img, text, filter = function () {} }) => {
+const FilterCard = ({ img, category, text, filter = function () {} }) => {
   const [isSelected, setIsSelected] = useState(false);
-
+  const [curr, setCurr] = useState(category);
   const toggleSelection = () => {
-    setIsSelected(!isSelected);
+    if (text !== curr) {
+      setIsSelected(!isSelected);
+    }
+    if (text === curr) {
+      setCurr("no");
+      setIsSelected(false);
+    }
     filter(text);
   };
 
@@ -15,7 +22,7 @@ const FilterCard = ({ img, text, filter = function () {} }) => {
     >
       <div
         className={`absolute left-20 top-20 h-32 w-32 rounded-full bg-blue-400 opacity-0 blur-[50px] transition-all duration-300 group-hover:opacity-30 ${
-          isSelected ? "opacity-50" : "opacity-0"
+          text === curr || isSelected ? "opacity-50" : "opacity-0"
         }`}
       ></div>
 
