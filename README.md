@@ -1,8 +1,12 @@
-🎓 Students Platform
+🎓 Teach Hub
+
+
 
 🌟 Overview
 
-The Students Platform is a non-profit initiative designed to foster collaboration and mutual assistance among students from various disciplines. The platform aims to bridge the gap between Arab and Jewish communities in Israel by enabling students to exchange expertise, provide services, and connect meaningfully.
+The Teach Hub is a non-profit initiative designed to foster collaboration and mutual assistance among students from various disciplines. The platform aims to bridge the gap between Arab and Jewish communities in Israel by enabling students to exchange expertise, provide services, and connect meaningfully.
+
+
 
 ✨ Key Features
 
@@ -18,6 +22,9 @@ The Students Platform is a non-profit initiative designed to foster collaboratio
 
 🎭 Motivational Quotes & Jokes: A fun feature to keep users engaged and motivated.
 
+
+
+
 🛠️ Technologies Used
 
 ⚛️ React: For building a responsive and dynamic user interface.
@@ -27,6 +34,9 @@ The Students Platform is a non-profit initiative designed to foster collaboratio
 🔥 Firebase: For authentication, database management, and backend-like services.
 
 🧠 GeminiAI: Powering the chatbot feature for intelligent user assistance.
+
+
+
 
 🎯 Goals
 
@@ -38,11 +48,14 @@ This project’s mission is to:
 
 🎓 Provide a non-profit platform where students can grow academically and socially.
 
+
+
+
 🚀 Getting Started
 
 ✅ Prerequisites
 
-Install Node.js.
+
 
 Set up a Firebase project with authentication and Firestore database.
 
@@ -64,9 +77,9 @@ npm install
 
 Start the development server:
 
-npm start
+npm run dev
 
-Open the app in your browser at http://localhost:3000.
+Open the app in your browser at http://localhost:5173.
 
 🔧 Firebase Configuration
 
@@ -96,6 +109,8 @@ src/
 ├── index.js              # Entry point
 └── styles/               # Tailwind CSS customizations
 
+
+
 🤝 Contribution Guidelines
 
 We welcome contributions to improve the platform. Here’s how you can help:
@@ -116,6 +131,9 @@ git push origin feature-name
 
 Submit a pull request.
 
+
+
+
 🌟 Future Plans
 
 🔮 Expand the recommendation system with advanced machine learning models.
@@ -124,9 +142,13 @@ Submit a pull request.
 
 🌐 Introduce multilingual support to better serve diverse users.
 
+
+
 📜 License
 
-This project is open source and available under the MIT License.
+This project is open source and available .
+
+
 
 📧 Contact
 
@@ -137,5 +159,7 @@ For any questions or suggestions, please reach out to our team:
 🐙 GitHub: Students Platform
 
 💼 LinkedIn: Aviv Salem
+
+
 
 🎉 Thank you for supporting our vision of bridging communities through education and collaboration!
